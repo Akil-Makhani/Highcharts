@@ -1,4 +1,3 @@
-// components/EngagementHelper.js
 
 const engagementMessageOverTimeChartOptions = ({ messageCountList, channels }) => {
     // Data processing and Highcharts options generation
@@ -27,7 +26,7 @@ const engagementMessageOverTimeChartOptions = ({ messageCountList, channels }) =
           formatter: function () {
             const date = new Date(this.value);
             const day = date.getUTCDate();
-            const month = date.toLocaleString('default', { month: 'long' });
+            const month = date.toLocaleString('default', { month: 'short' });
             return `${day}/${month}`;
           },
         },
@@ -41,6 +40,21 @@ const engagementMessageOverTimeChartOptions = ({ messageCountList, channels }) =
         },
       },
       series: seriesData,
+      tooltip: {
+        useHTML: true, // Allow using HTML in the tooltip
+        formatter: function () {
+          const channelLabel = this.series.name;
+          const date = new Date(this.x);
+          const day = date.getUTCDate();
+          const month = date.toLocaleString('default', { month: 'short' });
+          const count = this.y;
+          
+          return `
+            <b>${channelLabel}</b><br>
+            ${count} message on ${day} ${month}
+          `;
+        },
+      },
     };
   
     return options;

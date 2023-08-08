@@ -6,11 +6,8 @@ import EngagementHelper from './EngagementHelper';
 const EngagementChart = () => {
   const [data, setData] = useState({});
 
-  // Step 4: Fetch data (You can replace this with your actual API call or data source)
   useEffect(() => {
-    // Simulating fetching data (replace this with your actual data retrieval method)
     const fetchData = () => {
-      // Sample data, replace with your actual data
       const mockMessageCountList = [
         {
           "count": "1",
